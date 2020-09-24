@@ -38,3 +38,24 @@ insertText(getAllDigits($generatedString));
 
 echo '4) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
+// Parašykite funkciją, kuri skaičiuotų, iš kiek sveikų skaičių jos argumentas dalijasi be liekanos 
+// (išskyrus vienetą ir patį save) Argumentą užrašykite taip, kad būtų galima įvesti tik sveiką skaičių;
+
+function beLiekanos($sk) {
+    $sk = (int)$sk;
+    $count = 0;
+    for($i=$sk-1; $i>1; $i--) {
+        if($sk % $i == 0) {
+            $count++;
+            echo "Dalinasi be liekanos $i";
+            echo '<br>';
+        }
+    }
+    return $count;
+}
+$skaicius = 222;
+$skaicius = (int)$skaicius;
+echo 'Įvestas skaičius ' . $skaicius .'. Be liekanos dalinasi ' . beLiekanos($skaicius) . ' skaičiai (išskyrus vienetą ir patį save)';
+echo '<br>';
+echo '5) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
