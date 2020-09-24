@@ -83,3 +83,38 @@ echo '</pre>';
 
 echo '6) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
+// Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 333 iki 777. 
+// Naudodami 4 uždavinio funkciją iš masyvo ištrinkite pirminius skaičius.
+$arr = [];
+foreach(range(0, 99) as $val) {
+    $rand = rand(33, 77);
+    $arr[] = $rand;
+}
+// echo '<pre>';
+// print_r($arr);
+// echo '</pre>';
+echo '<br>';
+echo 'Ištrinti pirminiai skaičiai:';
+echo '<br>';
+foreach($arr as $key => $value) {
+    if(beLiekanos($value) == 0) {
+        echo $value;
+        echo '<br>';
+        unset($arr[$key]);
+    }
+}
+$arrLength = count($arr);
+echo '<br>';
+echo "Ištrynus pirminius skaičius, masyvo ilgis tapo - $arrLength";
+echo '<br>';
+echo '<pre>';
+print_r($arr);
+echo '</pre>';
+
+
+echo '7) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
+// Sugeneruokite atsitiktinio (nuo 10 iki 20) ilgio masyvą, kurio visi, išskyrus paskutinį, elementai yra 
+// atsitiktiniai skaičiai nuo 0 iki 10, o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir 
+// pirmasis masyvas. Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų. Paskutinio masyvo paskutinis 
+// elementas yra lygus 0;
