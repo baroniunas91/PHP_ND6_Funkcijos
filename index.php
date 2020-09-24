@@ -47,8 +47,8 @@ function beLiekanos($sk) {
     for($i=$sk-1; $i>1; $i--) {
         if($sk % $i == 0) {
             $count++;
-            echo "Dalinasi be liekanos $i";
-            echo '<br>';
+            // echo "Dalinasi be liekanos $i";
+            // echo '<br>';
         }
     }
     return $count;
@@ -58,4 +58,28 @@ $skaicius = (int)$skaicius;
 echo 'Įvestas skaičius ' . $skaicius .'. Be liekanos dalinasi ' . beLiekanos($skaicius) . ' skaičiai (išskyrus vienetą ir patį save)';
 echo '<br>';
 echo '5) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
+// Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 33 iki 77. 
+// Išrūšiuokite masyvą pagal daliklių be liekanos kiekį mažėjimo tvarka, panaudodami ketvirto uždavinio funkciją.
+echo 'Sugeneruotas masyvas iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 33 iki 77. Išrūšiuotas masyvas pagal daliklių be liekanos kiekį mažėjimo tvarka, panaudojant ketvirto uždavinio funkciją.';
+echo '<br>';
+$masyvas = [];
+foreach(range(0, 99) as $val) {
+    $rand = rand(33, 77);
+    $masyvas[] = $rand;
+    // $kartai = beLiekanos($rand);
+    // echo "Masyvo reikšmė $rand, dalinasi be liekanos $kartai kartų";
+    // echo '<br>';
+}
+$callback = function($a, $b) {
+    return beLiekanos($a) <=> beLiekanos($b);
+};
+
+usort($masyvas, $callback);
+
+echo '<pre>';
+print_r($masyvas);
+echo '</pre>';
+
+echo '6) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
