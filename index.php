@@ -19,3 +19,22 @@ insertTextAndTag('Stringas su Tag\'u', rand(1,6));
 echo '<br>';
 echo '3) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
+// Generuokite atsitiktinį stringą, pasinaudodami kodu md5(time()). Visus skaitmenis stringe įdėkite į h1 tagą. 
+// Jegu iš eilės eina keli skaitmenys, juos į tagą reikią dėti kartu (h1 atsidaro prieš pirmą ir užsidaro po 
+// paskutinio) Keitimui naudokite pirmo uždavinio funkciją;
+function getAllDigits($string) {
+    $string = preg_replace('/\D/', '', $string);
+    return $string;
+}
+$generatedString = md5(time());
+echo 'Sugeneruotas stringas: ';
+echo '<br>';
+echo $generatedString;
+echo '<br>';
+echo '<br>';
+echo 'Gauti skaitmenys: ';
+echo '<br>';
+insertText(getAllDigits($generatedString));
+
+echo '4) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
