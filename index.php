@@ -118,3 +118,35 @@ echo '<br>';
 // atsitiktiniai skaičiai nuo 0 iki 10, o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir 
 // pirmasis masyvas. Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų. Paskutinio masyvo paskutinis 
 // elementas yra lygus 0;
+$masyvas2 = [];
+$randTimes = rand(10, 30);
+echo "Suksim $randTimes kartų";
+echo '<br>';
+function generateArray($times) {
+    $newArray = [];
+    $rand = rand(9, 19);
+    static $count = 0;
+
+    foreach(range(0, $rand) as $key) {
+        if($key == $rand && $count <= $times) {
+            if($count == $times) {
+                $newArray[] = 0;
+            } else {
+                $count++;
+                $newArray[] = generateArray($times);
+            }
+        } else {
+            $newArray[] = rand(0, 10);
+        }
+    }
+    return $newArray;
+}
+
+$masyvas2 = generateArray($randTimes);
+
+echo '<pre>';
+print_r($masyvas2);
+echo '</pre>';
+
+echo '8) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
