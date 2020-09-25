@@ -150,3 +150,26 @@ echo '</pre>';
 
 echo '8) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
+// Suskaičiuokite septinto uždavinio elementų, kurie nėra masyvai, sumą.
+function arraysSum($array){
+    $sum = 0;
+    for($i=0; $i<count($array); $i++) {
+        if($i == (count($array)-1)) {
+            // echo 'Suma: ' . $sum;
+            // echo '<br>';
+            if(is_array($array[$i])) {
+                return $sum += arraysSum($array[$i]);
+            } else {
+                return $sum;
+            }
+        } else {
+            $sum += $array[$i];
+        }
+    }
+    return $sum;
+}
+$suma = arraysSum($masyvas2);
+echo "Visų elementų suma: $suma";
+echo '<br>';
+echo '9) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
