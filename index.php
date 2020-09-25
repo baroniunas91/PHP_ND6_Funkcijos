@@ -44,6 +44,9 @@ echo '<br>';
 function beLiekanos($sk) {
     $sk = (int)$sk;
     $count = 0;
+    if($sk <= 1) {
+        return 'Turi būti įvestas didesnis nei 1';
+    }
     for($i=$sk-1; $i>1; $i--) {
         if($sk % $i == 0) {
             $count++;
@@ -172,4 +175,39 @@ $suma = arraysSum($masyvas2);
 echo "Visų elementų suma: $suma";
 echo '<br>';
 echo '9) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
+// Sugeneruokite masyvą iš trijų elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 33. 
+// Jeigu tarp trijų paskutinių elementų yra nors vienas ne pirminis skaičius, prie masyvo pridėkite dar vieną 
+// elementą- atsitiktinį skaičių nuo 1 iki 33. Vėl patikrinkite pradinę sąlygą ir jeigu reikia pridėkite dar 
+// vieną elementą. Kartokite, kol sąlyga nereikalaus pridėti elemento. 
+
+// Generuojam masyvą
+$array9 = [];
+foreach(range(0, 2) as $key) {
+    $rand = rand(1, 33);
+    $array9[$key] = $rand;
+}
+echo 'Sugeneruotas pradinis masyvas: ';
+echo '<pre>';
+print_r($array9);
+echo '</pre>';
+
+function paskutiniai3Pirminiai($arr) {
+    foreach($arr as $k => $v) {
+        if($k >= count($arr)-3) {
+            if(!(beLiekanos($v) === 0)) {
+                $arr[] = rand(1, 33);
+                return paskutiniai3Pirminiai($arr);
+            }
+        }
+    }
+    return $arr;
+}
+$array9 = paskutiniai3Pirminiai($array9);
+echo 'Sugeneruotas masyvas, kurio paskutiniai trys elementai yra pirminiai skaičiai: ';
+echo '<pre>';
+print_r($array9);
+echo '</pre>';
+
+echo '10) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
