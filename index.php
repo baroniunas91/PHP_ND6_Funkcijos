@@ -266,3 +266,44 @@ print_r($array);
 echo '</pre>';
 echo '11) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
+// Sugeneruokite masyvą, kurio ilgis atsitiktinai kinta nuo 10 iki 100. Masyvo reikšmes sudaro atsitiktiniai 
+// skaičiai 0-100 ir masyvai Santykis skaičiuojamas atsitiktinai, bet taip, kad skaičiai sudarytų didesnę dalį 
+// nei masyvai. Reikšmių masyvų ilgis nuo 1 iki 5, o reikšmės analogiškos (nuo 50% iki 100% atsitiktiniai 
+// skaičiai 0-100, o likusios masyvai) ir t.t. kol visos galutinės reikšmės bus skaičiai ne masyvai. 
+// Suskaičiuoti kiek elementų turi masyvas. Suskaičiuoti masyvo elementų (tie kurie ne masyvai) sumą. 
+// Suskaičiuoti maksimalų masyvo gylį. Atvaizduokite masyvą grafiškai . Masyvą pavazduokite kaip div elementą, 
+// kuris yra display:flex, kurio viduje yra skaičiai. Kiekvienas div elementas turi savo unikalų id ir unikalią 
+// background spalvą (spalva pvz nepavaizduota). 
+// pvz: <div id=”M1”>10, 46, 67, <div id=”M2”> 89, 45, 89, 34, 90, <div id=”M3”> 84, 97 </div> 90, 56 </div> </div>
+
+function vangogas($ilgis) {
+    $masyvas = [];
+    foreach(range(1, $ilgis) as $value) {
+        
+        $rand = rand(1, 100);
+        if($rand > 30) {
+            $masyvas[] = rand(0, 100);
+        } else {
+            $masyvoIlgis = rand(1, 5);
+            $masyvas[] = vangogas($masyvoIlgis);
+        }
+    }
+    return $masyvas;
+}
+$masyvas = vangogas(rand(10, 100));
+echo '<pre>';
+print_r($masyvas);
+echo '</pre>';
+
+// echo '<div style="display:flex; flex-wrap: wrap;">';
+// function draw($masyvas) {
+//     foreach($masyvas as $val) {
+//         if(is_array($val)) {
+//             draw($val);
+//         } else {
+//             echo "<div id=”M1”>$val</div>";
+//         }
+//     }
+// }
+// echo '</div>';
+
