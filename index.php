@@ -211,3 +211,58 @@ echo '</pre>';
 
 echo '10) ----------------------------------------------------------------------------------------------------';
 echo '<br>';
+// Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai 
+// nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią 
+// skaičių (nebūtinai pirminį) ir prie jo pridėkite 3. Vėl paskaičiuokite masyvo pirminių skaičių vidurkį ir 
+// jeigu mažesnis nei 70 viską kartokite. 
+$array = [];
+foreach(range(0, 9) as $key) {
+    foreach(range(0, 9) as $innerVal) {
+        $array[$key][] = rand(1, 100);
+    }
+}
+// echo '<pre>';
+// print_r($array);
+// echo '</pre>';
+function vidDaugiauNei70($array) {
+    foreach($array as $l => $value) {
+        $count = 0;
+        $sum = 0;
+        foreach($value as $v) {
+            if(beLiekanos($v) === 0) {
+                $count++;
+                $sum += $v;
+            }
+        }
+        if($count != 0) {
+            $vidurkis = $sum / $count;
+        } else {
+            $vidurkis = 0;
+        }
+        if($vidurkis < 70) {
+            $maziausias = 101;
+            $k = 0;
+            foreach($value as $key => $m) {
+                if($m < $maziausias) {
+                    $maziausias = $m;
+                    $k = $key;
+                }
+            }
+            $array[$l][$k] += 3;
+            // echo $array[$l][$k];
+            // echo '<br>';
+            return vidDaugiauNei70($array);
+        } else {
+            // echo "$l elemento pirminių skaičių vidurkis yra: $vidurkis";
+            // echo '<br>';
+        }
+    }
+    return $array;
+}
+$array = vidDaugiauNei70($array);
+echo 'Sugeneruotas masyvas, kurio elementų pirminių skaičių vidurkis yra didesnis už 70';
+echo '<pre>';
+print_r($array);
+echo '</pre>';
+echo '11) ----------------------------------------------------------------------------------------------------';
+echo '<br>';
